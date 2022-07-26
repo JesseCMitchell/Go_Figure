@@ -12,7 +12,20 @@ module.exports.findOneItem = (req, res) => {
         .catch(err => {res.json(err);
     });
 },
+module.exports.buyOneItem = (req, res) => {
+    Item.findOne({_id: req.params._id})
+        .then(item => {res.json({results: item});})
+        .catch(err => {res.json(err);
+    });
+},
+module.exports.findOneItem = (req, res) => {
+    Item.findOne({_id: req.params._id})
+        .then(item => {res.json({results: item});})
+        .catch(err => {res.json(err);
+    });
+},
 module.exports.createItem = (req, res) => {
+    console.log(req.file)
     Item.create(req.body)
         .then(newItem => {res.json({results: newItem});})
         .catch(err => {res.json(err);

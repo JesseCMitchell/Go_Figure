@@ -1,36 +1,45 @@
+/** @format */
+
 const mongoose = require('mongoose');
 
-const BeltExamSchema = new mongoose.Schema({
-    title: {
-        type: String,
-        required:[true, "Title is required"],
-        minlength:[2, "Title must be at least 3 characters"]
-    },
-    salary: {
-        type: Number,
-        required:[true, "Salary is required"],
-        min:[0, "Salary must be at least 70000"]
-    },
-    company: {
-        type: String,
-        required:[true, "Company is required"],
-        minlength:[5, "Company must be at least 3 characters"]
-    },
-    imgUrl: {
-        type: String,
-        required:[true, "We need to have an image"],
-    },
-    dateAdded: {
-        type: Date
-    },
-    checkbox: {
-        type: Boolean
-    },
-    dropdown: {
-        type: String
-    }
-}, {timestamps: true});
+const ScavengerSchema = new mongoose.Schema(
+	{
+		title: {
+			type: String,
+			required: [true, 'Item name is required'],
+			minlength: [2, 'Item name must be at least 3 characters'],
+		},
+		price: {
+			type: Number,
+			required: [true, 'Price is required'],
+			min: [2, 'Price must be greater than $2'],
+		},
+		description: {
+			type: String,
+			required: [true, 'Description is required'],
+			minlength: [10, 'Description must be at least 10 characters'],
+		},
+		imgUrl: {
+			type: String,
+		},
+		photo: {
+			type: String,
+		},
+		dateAdded: {
+			type: Date,
+			required: [true, 'Date is required'],
+		},
+		itemCondition: {
+			type: String,
+			// required: [true, 'Item condition is required'],
+		},
+		forSale: {
+			type: Boolean,
+		},
+	},
+	{ timestamps: true },
+);
 
 // module.exports.Product = mongoose.model("Product", BeltExamSchema);
-const Item = mongoose.model("Item", BeltExamSchema);
+const Item = mongoose.model('Item', ScavengerSchema);
 module.exports = Item;
